@@ -1,6 +1,6 @@
 <template>
     <form @submit.prevent="submitForm">
-      <div class="container w-2/5 p-8 mx-auto mt-10 border rounded-lg">
+      <div class="container w-2/5 p-8 mx-auto mt-10 border rounded-lg bg-white">
         <div class="flex justify-center">
           <!-- <img v-bind:src="img" width="150" class="rounded-full"> -->
         </div>
@@ -25,10 +25,6 @@
           </div>
           <!-- Submit -->
           <br>
-          <!-- <div>
-            <input type="submit" value="Submit" @click="submitForm()"
-              class="px-8 py-2 text-white bg-green-500 rounded-lg hover:bg-green-600 focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 cursor-pointer">
-          </div> -->
           <base-button
         bgcolor="bg-purple-900"
         txtcolor="text-white"

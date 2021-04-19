@@ -1,6 +1,5 @@
 <template>
-  <base-card>
-    <div class="home">
+    <div class="">
       <register-form
         v-if="isEdit"
         :oldId="oldId"
@@ -11,10 +10,10 @@
       >
       </register-form>
 
-      <register-form v-else @submit-form="addNewProfile" />
+      <register-form v-else @submit-form="addNewProfile"/>
       <div class="container">
         <ul v-for="result in profileResults" :key="result.id">
-          <base-card>
+          <base-card class="bg-white w-72 mx-auto">
             <div class="flex flex-row items-center">
               <li class="p-2">
                 <span class="text-purple-600 italic"
@@ -68,7 +67,6 @@
         </ul>
       </div>
     </div>
-  </base-card>
 </template>
 
 <script>
