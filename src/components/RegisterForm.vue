@@ -5,12 +5,6 @@
           <!-- <img v-bind:src="img" width="150" class="rounded-full"> -->
         </div>
         <h1 class="text-2xl pt-4 pb-4">Registration Form</h1>
-        <p v-if="errors" class="text-red-500">
-          <b>Please correct the following error(s):</b>
-        <ul>
-          <!-- <li v-for="error in errors" class="text-red-500">{{ error }}</li> -->
-        </ul>
-        </p>
         <!-- Firstname -->
         <div class="grid grid-cols-2 gap-4">
           <div class="flex flex-col">
@@ -27,7 +21,7 @@
           <!-- Age -->
           <div class="flex flex-col">
             <label class="text-sm leading-7 text-gray-600">Age</label>
-            <input type="text" id="age" v-model="age" name="age" class="bg-gray-100 rounded px-4 py-2 mb-4">
+            <input type="number" id="age" v-model="age" name="age" class="bg-gray-100 rounded px-4 py-2 mb-4">
           </div>
           <!-- Submit -->
           <br>
