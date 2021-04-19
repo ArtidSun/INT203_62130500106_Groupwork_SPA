@@ -6,6 +6,7 @@
         :oldName="oldName"
         :oldLastName="oldLastName"
         :oldAge="oldAge"
+        :oldEmail="oldEmail"
         @submit-form="editSubmit"
       >
       </register-form>
@@ -13,7 +14,7 @@
       <register-form v-else @submit-form="addNewProfile"/>
       <div class="container">
         <ul v-for="result in profileResults" :key="result.id">
-          <base-card class="bg-white w-72 mx-auto">
+          <base-card class="bg-white w-auto mx-auto">
             <div class="flex flex-row items-center">
               <li class="p-2">
                 <span class="text-purple-600 italic"
@@ -23,7 +24,10 @@
                   >&nbsp;{{ result.lastname }}&nbsp;</span
                 >
                 <span class="text-green-600 italic"
-                  >Age:&nbsp;{{ result.age }}</span
+                  >Age:&nbsp;{{ result.age }}&nbsp;</span
+                >
+                <span class="text-green-600 italic"
+                  >Email:&nbsp;{{ result.email }}</span
                 >
               </li>
               <!-- :isEdit="isEdit" -->
@@ -35,7 +39,8 @@
                       result.id,
                       result.firstname,
                       result.lastname,
-                      result.age
+                      result.age,
+                      result.email,
                     )
                   "
                   bgcolor="bg-green-500"
@@ -85,6 +90,7 @@ export default {
       oldName: null,
       oldLastName: null,
       oldAge: null,
+      oldEmail: null,
       isEdit: false
     };
   },
@@ -100,13 +106,15 @@ export default {
           firstname: newProfile.firstname,
           lastname: newProfile.lastname,
           age: newProfile.age,
+          email: newProfile.email,
         }),
       });
       const data = await res.json();
       //spread array
-      this.profileResults = [...this.profileResults, data];
+      //this.profileResults = [...this.profileResults, data];
       // or add new item to the end of array
       this.profileResults.push(data);
+      console.log(this.profileResults);
     },
 
     async fetchProfileResult() {
@@ -129,25 +137,18 @@ export default {
       }
     },
 
-    // showData(oldProfile) {
-    //   this.isEdit = true;
-    //   this.editId = oldProfile.id;
-    //   this.oldName = oldProfile.firstname;
-    //   this.oldLastName = oldProfile.lastname;
-    //   this.oldAge = oldProfile.age;
-    // },
-
-    editProfile(passingData, editId, editName, editLastname, editAge) {
-      console.log(editId, editName, editLastname, editAge);
+    editProfile(passingData, editId, editName, editLastname, editAge, editEmail) {
+      console.log(editId, editName, editLastname, editAge, editEmail);
       this.isEdit = passingData.isEdit
       this.isEdit = true;
       this.oldId = editId;
       this.oldName = editName;
       this.oldLastName = editLastname;
       this.oldAge = editAge;
+      this.oldEmail = editEmail
 
       alert(
-        ` ${passingData.label} mode: ${this.isEdit}, you want to edit current data {id: ${editId}, name: ${editName}, lastname: ${editLastname}, age: ${editAge}}`
+        ` ${passingData.label} mode: ${this.isEdit}, you want to edit current data {id: ${editId}, name: ${editName}, lastname: ${editLastname}, age: ${editAge}, email: ${editEmail}}`
       );
     },
 
@@ -162,6 +163,7 @@ export default {
           firstname: editingData.firstname,
           lastname: editingData.lastname,
           age: editingData.age,
+          email: editingData.email,
         }),
       });
       const data = await res.json();
@@ -172,6 +174,7 @@ export default {
               firstname: data.firstname,
               lastname: data.lastname,
               age: data.age,
+              email: data.email,
             }
           : profile
       );

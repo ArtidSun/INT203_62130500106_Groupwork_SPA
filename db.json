@@ -1,15 +1,17 @@
 {
   "profileResults": [
     {
-      "firstname": "Sun",
+      "firstname": "Artid",
       "lastname": "Vijitpanmai",
-      "age": "20",
+      "age": 20,
+      "email": "artid.vijitpanmai@mail.kmutt.ac.th",
       "id": 1
     },
     {
       "firstname": "Artid",
       "lastname": "Vijitpanmai",
       "age": "21",
+      "email": "artid.vijitpanmai@mail.kmutt.ac.th",
       "id": 2
     }
   ]

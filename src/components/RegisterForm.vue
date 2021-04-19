@@ -4,7 +4,7 @@
         <div class="flex justify-center">
           <!-- <img v-bind:src="img" width="150" class="rounded-full"> -->
         </div>
-        <h1 class="text-2xl pt-4 pb-4">Registration Form</h1>
+        <h1 class="text-2xl pt-4 pb-4">Pre Registration</h1>
         <!-- Firstname -->
         <div class="grid grid-cols-2 gap-4">
           <div class="flex flex-col">
@@ -22,6 +22,11 @@
           <div class="flex flex-col">
             <label class="text-sm leading-7 text-gray-600">Age</label>
             <input type="number" id="age" v-model="age" name="age" class="bg-gray-100 rounded px-4 py-2 mb-4">
+          </div>
+          <!-- Email -->
+          <div class="flex flex-col">
+            <label class="text-sm leading-7 text-gray-600">Email</label>
+            <input type="text" id="email" v-model="email" name="email" class="bg-gray-100 rounded px-4 py-2 mb-4">
           </div>
           <!-- Submit -->
           <br>
@@ -58,6 +63,11 @@ export default {
       required: false,
       default: null,
     },
+    oldEmail: {
+      type: String,
+      required: false,
+      default: "",
+    },
   },
   emits: ["submit-form"],
   data() {
@@ -65,7 +75,8 @@ export default {
       id: this.oldId,
       firstname: this.oldName,
       lastname: this.oldLastName,
-      age: this.oldAge,
+      age: parseInt(this.oldAge),
+      email:  this.oldEmail
       // img: "images/Me.jpg",
     };
   },
@@ -76,11 +87,13 @@ export default {
         firstname: this.firstname,
         lastname: this.lastname,
         age: this.age,
+        email: this.email
       };
       this.id = null;
       this.firstname = "";
       this.lastname = "";
       this.age = null;
+      this.email = "";
       this.$emit("submit-form", newProfile);
     },
   },

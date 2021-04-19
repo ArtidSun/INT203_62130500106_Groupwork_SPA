@@ -1,9 +1,9 @@
 <template>
   <div class="bg-gray-600" id="nav">
-    <router-link class="" to="/">Home</router-link> &nbsp;
+    <router-link to="/">Home</router-link> &nbsp;
     <router-link to="/profile">Profile</router-link>
   </div>
-  <router-view/>
+  <router-view />
 </template>
 
 <style>
@@ -21,10 +21,10 @@
 
 #nav a {
   font-weight: bold;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 #nav a.router-link-exact-active {
-  color: #BC2500;
+  color: #bc2500;
 }
 </style>
