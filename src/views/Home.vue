@@ -38,7 +38,6 @@ export default {
           "Content-type": "application/json",
         },
         body: JSON.stringify({
-          id: newProfile.id,
           firstname: newProfile.firstname,
           lastname: newProfile.lastname,
           age: newProfile.age,
@@ -69,6 +68,45 @@ export default {
             ))
           : alert("Error to delete profile");
       }
+    },
+
+    editProfile(passingData, editId, editName, editLastname, editAge) {
+      // this.isEdit = passingData.isEdit
+      this.isEdit = true;
+      this.oldId = editId;
+      this.oldName = editName;
+      this.oldLastName = editLastname;
+      this.oldAge = editAge;
+
+      alert(
+        ` ${passingData.label} mode: ${this.isEdit}, you want to edit current data {id: ${editId}, name: ${editName}, lastname: ${editLastname}, age: ${editAge}}`
+      );
+    },
+
+    async editSubmit(editingData) {
+      const res = await fetch(`${this.url}/${editingData.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          firstname: editingData.firstname,
+          lastname: editingData.lastname,
+          age: editingData.age,
+        }),
+      });
+      const data = await res.json();
+      this.profileResults = this.profileResults.map((profile) =>
+        profile.id === data.id
+          ? {
+              ...profile,
+              firstname: data.firstname,
+              lastname: data.lastname,
+              age: data.age,
+            }
+          : profile
+      );
+      this.isEdit = false;
     },
   },
 
