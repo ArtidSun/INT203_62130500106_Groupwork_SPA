@@ -1,56 +1,66 @@
 <template>
-  <div class="home">
-    <register-form
-      v-if="isEdit"
-      :oldId="oldId"
-      :oldName="oldName"
-      :oldLastName="oldLastName"
-      :oldAge="oldAge"
-      @submit-form="editSubmit"
-    >
-    </register-form>
-
-    <register-form v-else @submit-form="addNewProfile" />
+  <div class="container">
+    <ul v-for="result in profileResults" :key="result.id">
+      <base-card>
+        <div class="flex flex-row items-center">
+          <li class="p-2">
+            <span class="text-purple-600 italic">Name:&nbsp;{{ result.firstname }} </span>
+            <span class="text-purple-600 italic">&nbsp;{{ result.lastname }}&nbsp;</span>
+            <span class="text-green-600 italic">Age:&nbsp;{{ result.age }}</span>
+          </li>
+          <!-- :isEdit="isEdit" -->
+          <div class="flex flex-col">
+            <base-button
+              @btn-click="
+                editProfile(
+                  $event,
+                  result.id,
+                  result.name,
+                  result.lastname,
+                  result.age
+                )
+              "
+              bgcolor="bg-green-500"
+              txtcolor="text-white"
+              label="edit"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="black"
+                width="18px"
+                height="18px"
+              >
+                <path d="M0 0h24v24H0z" fill="none" />
+                <path
+                  d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
+                />
+              </svg>
+            </base-button>
+            <base-button
+              @btn-click="deleteProfile($event, result.id)"
+              bgcolor="bg-red-600"
+              txtcolor="text-red"
+              label="x"
+            ></base-button>
+          </div>
+        </div>
+      </base-card>
+    </ul>
   </div>
 </template>
-
 <script>
-import RegisterForm from "@/components/RegisterForm.vue";
-
 export default {
-  name: "Home",
-  components: {
-    "register-form": RegisterForm,
-  },
   data() {
     return {
       url: "http://localhost:5000/profileResults",
+      profileResults: [],
       oldName: null,
       oldLastName: null,
       oldAge: null,
     };
   },
   methods: {
-    async addNewProfile(newProfile) {
-      console.log(newProfile);
-      const res = await fetch(this.url, {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({
-          firstname: newProfile.firstname,
-          lastname: newProfile.lastname,
-          age: newProfile.age,
-        }),
-      });
-      const data = await res.json();
-      //spread array
-      this.profileResults = [...this.profileResults, data];
-      // or add new item to the end of array
-      this.profileResults.push(data)
-    },
-
     async fetchProfileResult() {
       const res = await fetch(this.url);
       const data = await res.json();

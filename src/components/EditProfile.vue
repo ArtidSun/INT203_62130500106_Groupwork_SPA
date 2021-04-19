@@ -11,6 +11,12 @@
           <!-- <li v-for="error in errors" class="text-red-500">{{ error }}</li> -->
         </ul>
         </p>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="flex flex-col">
+            <label class="text-sm leading-7 text-gray-600">Id</label>
+            <input type="text" id="id" v-model="id" name="id"
+              class="bg-gray-100 rounded px-4 py-2 mb-4">
+          </div>
         <!-- Firstname -->
         <div class="grid grid-cols-2 gap-4">
           <div class="flex flex-col">
@@ -44,55 +50,3 @@
       </div>
     </form>
 </template>
-
-<script>
-export default {
-  props: {
-    oldId: {
-      type: Number,
-      required: false,
-      default: null,
-    },
-    oldName: {
-      type: String,
-      required: false,
-      default: "",
-    },
-    oldLastName: {
-      type: String,
-      required: false,
-      default: "",
-    },
-    oldAge: {
-      type: Number,
-      required: false,
-      default: null,
-    },
-  },
-  emits: ["submit-form"],
-  data() {
-    return {
-      id: this.oldId,
-      firstname: this.oldName,
-      lastname: this.oldLastName,
-      age: this.oldAge,
-      // img: "images/Me.jpg",
-    };
-  },
-  methods: {
-    submitForm() {
-      const newProfile = {
-        id: this.id,
-        firstname: this.firstname,
-        lastname: this.lastname,
-        age: this.age,
-      };
-      this.id = null;
-      this.firstname = "";
-      this.lastname = "";
-      this.age = null;
-      this.$emit("submit-form", newProfile);
-    },
-  },
-};
-</script>
