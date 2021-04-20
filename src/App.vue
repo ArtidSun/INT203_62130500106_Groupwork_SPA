@@ -1,7 +1,8 @@
 <template>
   <div class="bg-gray-600" id="nav">
     <router-link to="/">Home</router-link> &nbsp;
-    <router-link to="/profile">Profile</router-link>
+    <router-link to="/profile">Profile</router-link> &nbsp;
+    <router-link to="/heros">Heros</router-link>
   </div>
   <router-view />
 </template>
