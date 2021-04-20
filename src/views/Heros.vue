@@ -1,5 +1,5 @@
 <template>
-  <div class="justify-between p-9 grid grid-cols-9 gap-4 bg-black">
+  <div class="justify-between p-9 grid grid-cols-9 gap-4 bg-mandarin">
     <div v-for="result in herosCharectors" :key="result.id">
       <base-card class="bg-white">
         <div class="flex flex-row items-center">
